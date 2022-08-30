@@ -80,3 +80,16 @@ insungs = [{
   name: 'insung2',
   age: 33
 }]
+
+
+// Functions & types
+
+function add(a: number, b: number): number|string {
+  return a+b;
+}
+
+function printValue(value: any): void{
+  console.log(value);
+}
+//void는 undefined와 비슷하지만 함수의 반환타입에 결합해 사용하는 특수한 타입
+//반환값이 없을 때 반환자체를 사용하기 위해서는 undefined 사용
