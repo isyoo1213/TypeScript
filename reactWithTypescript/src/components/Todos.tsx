@@ -15,10 +15,10 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
   }
   return (
     <ul>
-      <TodoItem items={props.items}/>
-      {/* {props.items.map((item) => (
-        <li key={item.id}>{item.text}</li>
-      ))} */}
+      {/* <TodoItem items={props.items}/> */}
+      {props.items.map((item) => (
+        <TodoItem key={item.id} text={item.text}/>
+      ))}
     </ul>
   );
 };
