@@ -44,3 +44,10 @@ let people: {
 }[]; // 객체 배열 
 
 
+// Type inference
+
+let course = 'React';
+
+// course = 1234;
+
+
