@@ -93,3 +93,32 @@ function printValue(value: any): void{
 }
 //void는 undefined와 비슷하지만 함수의 반환타입에 결합해 사용하는 특수한 타입
 //반환값이 없을 때 반환자체를 사용하기 위해서는 undefined 사용
+
+
+// Generics
+
+function insertAtBeginning(array: any[], value: any){
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray = [1, 2, 3];
+
+let updatedArray = insertAtBeginning(demoArray, -1); // [-1, 1, 2, 3]
+// updatedArray에 마우스를 올려보면 any[] 타입 >> any[]선언으로 숫자만 들어있는 것을 인식하지 않음
+
+updatedArray[0].split(''); // ide에서 오류를 발견하지 못하나, 런타임 에러 발생
+
+
+function insertAtBeginningWithGeneric<T>(array: T[], value: T){
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const updatedArrayByGeneric = insertAtBeginningWithGeneric(demoArray, -1);
+
+// updatedArrayByGeneric[0].split(''); //오류 발생
+
+updatedArray = insertAtBeginningWithGeneric(updatedArray, -2);
+updatedArray[0].split(''); // 기존의 함수를 통해 any[]타입이 결정된 updatedArray는 generic처리를 하는 함수를 거치더라도 any[]타입으로 들어감
+
