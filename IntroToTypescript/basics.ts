@@ -50,4 +50,9 @@ let course = 'React';
 
 // course = 1234;
 
+// Union Type
+let names: string | string[];
+
+names = 'insung';
+names = ['insung', 'koala'];
 
