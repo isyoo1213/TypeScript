@@ -56,3 +56,27 @@ let names: string | string[];
 names = 'insung';
 names = ['insung', 'koala'];
 
+
+// TypeAlliases
+
+type Person = {
+  name: string;
+  age : number;
+}
+
+let insung: Person;
+
+insung = {
+  name: 'insung',
+  age : 32
+}
+
+let insungs: Person[];
+
+insungs = [{
+  name: 'insung1',
+  age: 32
+}, {
+  name: 'insung2',
+  age: 33
+}]
