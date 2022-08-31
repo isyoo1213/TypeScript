@@ -1,6 +1,7 @@
 import React from "react";
 import Todo from "../models/todo";
 import TodoItem from "./TodoItem";
+import styles from './Todos.module.css';
 
 const Todos: React.FC<{ items: Todo[] }> = (props) => {
   {
@@ -14,7 +15,7 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
         + props는 항상 '객체'이므로, items 또한 객체로 구성*/
   }
   return (
-    <ul>
+    <ul className={styles.todos}>
       {/* <TodoItem items={props.items}/> */}
       {props.items.map((item) => (
         <TodoItem key={item.id} text={item.text}/>
