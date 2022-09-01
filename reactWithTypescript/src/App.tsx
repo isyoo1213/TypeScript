@@ -22,10 +22,16 @@ function App() {
     //이전 state의 상태를 참고하는 state의 경우 함수형으로 작성! + concat() 메서드로 새로운 배열 생성
   }
 
+  const removeTodoHandler= (todoId: string) => {
+    setTodos((prevTodos)=>{
+      return prevTodos.filter(todo => todo.id !== todoId);
+    })
+  }
+
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler}/>
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeTodoHandler} />
     </div>
   );
 }

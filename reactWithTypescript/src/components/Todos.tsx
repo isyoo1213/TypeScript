@@ -3,7 +3,7 @@ import Todo from "../models/todo";
 import TodoItem from "./TodoItem";
 import styles from './Todos.module.css';
 
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[]; onRemoveTodo:(todoId:string)=>void }> = (props) => {
   {
     /* props: { items:string[], children:..... } 원래 이렇게 props에 사용될 변수들의 type을 지정해줘야하나
       라이브러리에 정의된 React 타입을 Todos 함수형 컴포넌트에 타입명시하면 자유롭게 사용 가능
@@ -14,11 +14,14 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
       ** FC타입에 <>을 통해 기능을 꺼내고 + <> 내에 {}객체를 설정함으로써, 기존 childrern프로퍼티가 존재하는 props객체에 병합
         + props는 항상 '객체'이므로, items 또한 객체로 구성*/
   }
+
+  //Todos는 App.tsx에서 관리하고 있으므로, prop을 통해 전달받는 방식 사용
+
   return (
     <ul className={styles.todos}>
       {/* <TodoItem items={props.items}/> */}
       {props.items.map((item) => (
-        <TodoItem key={item.id} text={item.text}/>
+        <TodoItem key={item.id} text={item.text} onRemoveTodo={props.onRemoveTodo.bind(null, item.id)}/>
       ))}
     </ul>
   );
