@@ -1,8 +1,11 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 
 import styles from './NewTodo.module.css';
+import TodosContext from '../store/todos-context';
 
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
+
   const todoTextInputRef = useRef<HTMLInputElement>(null);
   {/* useRef 자체는 Generic Type 
       useRef에 이미 다른 element가 할당되어 있을 수 있으므로 생성될 때 자동으로 설정될 수도 있음 
@@ -26,7 +29,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   }
 
 

@@ -1,9 +1,9 @@
-import React from "react";
-import Todo from "../models/todo";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
 import styles from './Todos.module.css';
+import TodosContext from "../store/todos-context";
 
-const Todos: React.FC<{ items: Todo[]; onRemoveTodo:(todoId:string)=>void }> = (props) => {
+const Todos: React.FC = () => {
   {
     /* props: { items:string[], children:..... } 원래 이렇게 props에 사용될 변수들의 type을 지정해줘야하나
       라이브러리에 정의된 React 타입을 Todos 함수형 컴포넌트에 타입명시하면 자유롭게 사용 가능
@@ -17,12 +17,15 @@ const Todos: React.FC<{ items: Todo[]; onRemoveTodo:(todoId:string)=>void }> = (
 
   //Todos는 App.tsx에서 관리하고 있으므로, prop을 통해 전달받는 방식 사용
 
+  const todosCtx = useContext(TodosContext);
+
   return (
     <ul className={styles.todos}>
       {/* <TodoItem items={props.items}/> */}
-      {props.items.map((item) => (
-        <TodoItem key={item.id} text={item.text} onRemoveTodo={props.onRemoveTodo.bind(null, item.id)}/>
+      {todosCtx.items.map((item) => (
+        <TodoItem key={item.id} text={item.text} onRemoveTodo={todosCtx.removeTodo.bind(null, item.id)}/>
       ))}
+      {/* 자식 컴포넌트로 id binding이 된 함수를 넘겨주기 위해 prop으로 넘겨줌 */}
     </ul>
   );
 };
